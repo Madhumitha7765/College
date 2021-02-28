@@ -1,0 +1,597 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+static int mcount=0;
+static int scount=0;
+static int hcount=0;
+static int ccount=0;
+
+struct Mask
+{
+    string name;
+    string type;
+    int qty;
+    int price;
+    string desc;
+    Mask *pre;
+    Mask *next;
+    int id;
+}*mhead=NULL,*mtemp=NULL,*mptr,*tmhead=NULL;
+
+struct Sanitiser
+{
+    string name;
+    string type;
+    int qty;
+    int price;
+    string desc;
+    Sanitiser *next;
+    Sanitiser *pre;
+    int id;
+}*shead=NULL,*stemp=NULL,*sptr;
+
+struct Handwash
+{
+    int id;
+    string name;
+    string type;
+    int qty;
+    int price;
+    string desc;
+    Handwash *next;
+    Handwash *pre;
+}*hhead=NULL,*htemp=NULL,*hptr;
+
+float cartTotal = 0;
+struct ShoppingCart
+{
+    int id;
+    string name;
+    string type;
+    int qty;
+    int price;
+    struct ShoppingCart *next;
+    int net_price;
+}*cart_head= NULL,*cart_temp,*cart_ptr;
+
+struct tnode
+{
+    int id;
+    string name;
+    string type;
+    int qty;
+    int price;
+    struct tnode *pre;
+    struct tnode *next;
+
+}*thead=NULL;
+
+void addToCart(struct ShoppingCart *s)
+{
+    if(cart_head==NULL)
+    {
+        cart_head=s;
+        cart_head->next=NULL;
+    }
+    else
+    {
+        s->next = cart_head;
+        cart_head = s;
+
+    }
+}
+
+
+void insert_Mask()
+{
+    mptr=new Mask;
+    cout<<"\n you are stocking for masks \n";
+    cin.ignore();
+    cout<<"\n enter Type:";
+    getline(cin,mptr->type);
+    cout<<"\n enter name:";
+    getline(cin,mptr->name);
+    cout<<"\n enter quantity:";
+    cin>>mptr->qty;
+    cout<<"\n enter price:";
+    cin>>mptr->price;
+    cin.ignore();
+    cout<<"\n describe the product:";
+    getline(cin,mptr->desc);
+    cin.ignore();
+    mcount++;
+    mptr->id=mcount;
+    mtemp=mhead;
+    mptr->pre=NULL;
+    mptr->next=NULL;
+    if (mhead == NULL)
+    {
+        mptr->pre = NULL;
+        mptr->next=NULL;
+        mhead = mptr;
+    }
+    else
+    {
+        while (mtemp->next != NULL)
+            mtemp=mtemp->next;
+        mtemp->next =mptr;
+        mptr->pre=mtemp;
+    }
+
+}
+
+
+void displayMask()
+{
+    mtemp=mhead;
+    cout<<"\n ID\tName\t\tType\t\tPrice\t\tQty\n";
+    while(mtemp!=NULL)
+    {
+        cout<<mtemp->id<<"\t"<<mtemp->name<<"\t\t"<<mtemp->type<<"\t"<<mtemp->price<<"\t\t"<<mtemp->qty<<endl;
+        cout<<"\n Description:"<<mtemp->desc<<endl;
+        mtemp=mtemp->next;
+    }
+}
+
+void buyMask()
+{
+    int id1,qty1;
+    cout<<"\ enter the product id:\n";
+    cin>>id1;
+    int flag=0;
+    mptr=mhead;
+    while(mptr!=NULL)
+    {
+        if(mptr->id==id1)
+        {
+            flag++;
+            cout<<"\n Available quantity:"<<mptr->qty<<endl;
+            cout<<"\n enter the quantity you require:";
+            cin>>qty1;
+            if(mptr->qty-qty1<0)
+                cout<<"\n the entered quantity is not available!!!\n";
+            else
+               {
+                   mptr->qty-=qty1;
+                cart_ptr=new ShoppingCart;
+                cart_ptr->name=mptr->name;
+                cart_ptr->type=mptr->type;
+                cart_ptr->price=mptr->price;
+                cart_ptr->qty=qty1;
+                ccount++;
+                cart_ptr->id=ccount;
+                cart_ptr->net_price=cart_ptr->price*cart_ptr->qty;
+                addToCart(cart_ptr);
+                cout<<"\n your order is successfully added to the cart\n";
+            }
+            break;
+        }
+        else
+            mptr=mptr->next;
+    }
+    if(flag==0)
+        cout<<"\n Invalid id\n";
+
+}
+
+void insert_Sanitiser()
+{
+    sptr=new Sanitiser;
+    cout<<"\n you are stocking for sanitisers \n";
+    cin.ignore();
+    cout<<"\n enter Type:";
+    getline(cin,sptr->type);
+    cout<<"\n enter name:";
+    getline(cin,sptr->name);
+    cout<<"\n enter quantity:";
+    cin>>sptr->qty;
+    cout<<"\n enter price:";
+    cin>>sptr->price;
+    cin.ignore();
+    cout<<"\n describe the product:";
+    getline(cin,sptr->desc);
+    cin.ignore();
+    scount++;
+    sptr->id=scount;
+    stemp=shead;
+    sptr->pre=NULL;
+    sptr->next=NULL;
+    if (shead == NULL)
+    {
+        sptr->pre = NULL;
+        sptr->next=NULL;
+        shead = sptr;
+    }
+    else
+    {
+        while (stemp->next != NULL)
+            stemp=stemp->next;
+        stemp->next =sptr;
+        sptr->pre=stemp;
+    }
+
+}
+
+void displaySanitiser()
+{
+    stemp=shead;
+    cout<<"\n ID\tName\t\tType\t\tPrice\t\tQty\n";
+    while(stemp!=NULL)
+    {
+        cout<<stemp->id<<"\t"<<stemp->name<<"\t\t"<<stemp->type<<"\t"<<stemp->price<<"\t\t"<<stemp->qty<<endl;
+        cout<<"\n Description:"<<stemp->desc<<endl;
+        stemp=stemp->next;
+    }
+}
+
+void buySanitiser()
+{
+    int id1,qty1;
+    cout<<"\n enter the product id:\n";
+    cin>>id1;
+    int flag=0;
+    sptr=shead;
+    while(sptr!=NULL)
+    {
+        if(sptr->id==id1)
+        {
+            flag++;
+            cout<<"\n Available quantity:"<<sptr->qty<<endl;
+            cout<<"\n enter the quantity you require:";
+            cin>>qty1;
+            if(sptr->qty-qty1<0)
+                cout<<"\n the entered quantity is not available!!!\n";
+            else
+                {
+                sptr->qty-=qty1;
+                cart_ptr=new ShoppingCart;
+                cart_ptr->name=sptr->name;
+                cart_ptr->type=sptr->type;
+                cart_ptr->price=sptr->price;
+                cart_ptr->qty=qty1;
+                ccount++;
+                cart_ptr->id=ccount;
+                cart_ptr->net_price=cart_ptr->price*cart_ptr->qty;
+                addToCart(cart_ptr);
+                cout<<"\n your order is successfully added to the cart\n";
+                }
+            break;
+        }
+        else
+            sptr=sptr->next;
+    }
+    if(flag==0)
+        cout<<"\n Invalid id\n";
+
+}
+
+void insert_Handwash()
+{
+    hptr=new Handwash;
+    cout<<"\n you are stocking for handwashes \n";
+    cin.ignore();
+    cout<<"\n enter Type:";
+    getline(cin,hptr->type);
+    cout<<"\n enter name:";
+    getline(cin,hptr->name);
+    cout<<"\n enter quantity:";
+    cin>>hptr->qty;
+    cout<<"\n enter price:";
+    cin>>hptr->price;
+    cin.ignore();
+    cout<<"\n describe the product:";
+    getline(cin,hptr->desc);
+    cin.ignore();
+    hcount++;
+    hptr->id=hcount;
+    htemp=hhead;
+    hptr->pre=NULL;
+    hptr->next=NULL;
+    if (hhead == NULL)
+    {
+        hptr->pre = NULL;
+        hptr->next=NULL;
+        hhead =hptr;
+    }
+    else
+    {
+        while (htemp->next != NULL)
+            htemp=htemp->next;
+        htemp->next =hptr;
+        hptr->pre=htemp;
+    }
+
+}
+void displayHandwash()
+{
+    htemp=hhead;
+    cout<<"\n ID\tName\t\tType\t\tPrice\t\tQty\n";
+    while(htemp!=NULL)
+    {
+        cout<<htemp->id<<"\t"<<htemp->name<<"\t\t"<<htemp->type<<"\t"<<htemp->price<<"\t\t"<<htemp->qty<<endl;
+        cout<<"\n Description:"<<htemp->desc<<endl;
+        htemp=htemp->next;
+    }
+}
+
+void buyHandwash()
+{
+    int id1,qty1;
+    cout<<"\n enter the product id:\n";
+    cin>>id1;
+    int flag=0;
+    hptr=hhead;
+    while(hptr!=NULL)
+    {
+
+        if(hptr->id==id1)
+        {
+            flag++;
+            cout<<"\n Available quantity:"<<hptr->qty<<endl;
+            cout<<"\n enter the quantity you require:";
+            cin>>qty1;
+            if(hptr->qty-qty1<0)
+                cout<<"\n the entered quantity is not available!!!\n";
+            else
+            {
+                hptr->qty-=qty1;
+                cart_ptr=new ShoppingCart;
+                cart_ptr->name=hptr->name;
+                cart_ptr->type=hptr->type;
+                cart_ptr->price=hptr->price;
+                cart_ptr->qty=qty1;
+                ccount++;
+                cart_ptr->id=ccount;
+                cart_ptr->net_price=cart_ptr->price*cart_ptr->qty;
+                addToCart(cart_ptr);
+                cout<<"\n your order is successfully added to the cart\n";
+            }
+
+            break;
+        }
+        else
+            hptr=hptr->next;
+    }
+    if(flag==0)
+        cout<<"\n Invalid id\n";
+
+}
+
+
+
+
+int getTotal()
+{
+    int gtot=0;
+    cart_temp=cart_head;
+    while(cart_temp!=NULL)
+    {
+        gtot+=cart_temp->net_price;
+        cart_temp=cart_temp->next;
+    }
+    return gtot;
+
+
+}
+
+void emptyCart()
+{
+    cart_head=NULL;
+}
+
+void removeItem(int id1)
+{
+    cart_temp=cart_head;
+    struct ShoppingCart *prev;
+
+    // If head node itself holds the key to be deleted
+    if (cart_temp != NULL && cart_temp->id == id1)
+    {
+        cart_head=cart_head->next; // Changed head
+        delete cart_temp;               // free old head
+        return;
+    }
+
+    // Search for the key to be deleted, keep track of the
+    // previous node as we need to change 'prev->next'
+    while (cart_temp != NULL && cart_temp->id != id1)
+    {
+        prev = cart_temp;
+        cart_temp = cart_temp->next;
+    }
+
+    // If key was not present in linked list
+    if (cart_temp == NULL)
+        cout<<"\n Invalid ID\n";
+
+    // Unlink the node from linked list
+    prev->next = cart_temp->next;
+
+    delete cart_temp;  // Free memory
+}
+void ModifyCart()
+{
+ int opt;
+        do
+        {
+        cout<<"\nPRESS 1.TO DELETE ITEM FROM CART\n2.EMPTY WHOLE CART\n3.TO EXIT FROM THIS MENU\n";
+        int prdno;
+
+        cout<<"\nENTER YOUR CHOICE:";
+        cin>>opt;
+        switch(opt)
+        {
+                case 1:
+                    cout<<"\n enter product Id to remove:\n";
+                    cin>>prdno;
+                    removeItem(prdno);
+                    break;
+                case 2:
+                    emptyCart();
+                    break;
+                case 3:
+
+                    break;
+                default:
+                    cout<<"\n Invalid choice\n";
+           }
+        }while(opt!=3);
+
+}
+
+
+void display_cart()
+{
+    ShoppingCart *s;
+    s = cart_head;
+    if(s!=NULL)
+    {
+        cout<<"\nSHOPPING CART :\n";
+        cout<<"ID\tName\tType\t\tPrice\tQty\tNetcost\n";
+        while(s!=NULL)
+        {
+            cout<<s->id<<"\t"<<s->name<<"\t\t"<<s->type<<"\t\t"<<s->price<<"\t"<<s->qty<<"\t"<<s->net_price<<"\n";
+            s=s->next;
+        }
+        cout<<"\nGRAND TOTAL OF YOUR CART : "<<getTotal()<<" Rs\n";
+    }
+     else
+        cout<<"\nCART IS EMPTY !!\n";
+    cout<<"\nDO YOU WANT TO MODIFY CART?[Y-YES/ANY KEY-NO] : ";
+    char x;
+    cin.ignore();
+    cin>>x;
+    if(x=='Y')
+        ModifyCart();
+    else
+        return;
+}
+void adminMenu()
+{
+    int choice;
+    do
+    {
+        system("cls");
+    cout<<"\n Welcome admin\n";
+    cout<<"\n 1.Masks\n";
+    cout<<"\n 2.Sanitisers\n";
+    cout<<"\n 3.Handwashes\n";
+    cout<<"\n 4.exit\n";
+    cout<<"\n Which item do you want to stock?\n";
+    cin>>choice;
+    switch(choice)
+    {
+    case 1:
+        insert_Mask();
+        break;
+    case 2:
+        insert_Sanitiser();
+        break;
+    case 3:
+        insert_Handwash();
+        break;
+    case 4:
+         break;
+    default:
+        cout<<"\n Invalid choice!!!\n";
+    }
+    }while(choice!=4);
+}
+void consumerMenu()
+{          int choice1;
+            char ch;
+            system("cls");
+            do
+            {
+
+            cout<<"\nWELCOME TO CORONA CRISIS SHOP";
+            cout<<"\nCATEGORIES :"<<endl;
+            cout<<"1-MASKS"<<endl;
+            cout<<"2-SANITISERS"<<endl;
+            cout<<"3-HANDWASHES"<<endl;
+            cout<<"4-DISPLAY SHOPPING CART"<<endl;
+            cout<<"5-QUIT"<<endl;
+            cout<<"\nENTER THE CATEGORY NUMBER: "<<endl;
+            cin>>choice1;
+            switch(choice1)
+            {
+                case 1:
+                cout<<"\n These are our available options\n";
+                displayMask();
+                cout<<"\n Do you want to buy[Y/N]?";
+                cin>>ch;
+                switch(ch)
+                {
+                    case 'Y':
+                    buyMask();
+                    break;
+                }
+                break;
+                case 2:
+                cout<<"\n These are our available options\n";
+                displaySanitiser();
+                cout<<"\n Do you want to buy[Y/N]?";
+                cin>>ch;
+                switch(ch)
+                {
+                    case 'Y':
+                    buySanitiser();
+                    break;
+                }
+                break;
+
+                case 3:
+                cout<<"\n These are our available options\n";
+                displayHandwash();
+                cout<<"\n Do you want to buy[Y/N]?";
+                cin>>ch;
+                switch(ch)
+                {
+                    case 'Y':
+                    buyHandwash();
+                    break;
+                }
+                break;
+                case 4:
+                    display_cart();
+                    break;
+                case 5:
+                    return;
+                    break;
+                default:
+                    cout<<"\n Invalid choice\n";
+            }
+            }while(choice1!=5);
+}
+
+
+main()
+{
+    cout<<"\n E COMMERCE WEBSITE \n";
+    adminMenu();
+    int choice,choice1,ch;
+    do
+    {   system("cls");
+        cout<<"\n Welcome to the main menu\n";
+        cout<<"\n 1.Admin\n";
+        cout<<"\n 2.Consumer\n";
+        cout<<"\n 3.exit\n";
+        cout<<"\n enter your choice:\n";
+        cin>>choice;
+        switch(choice)
+        {
+        case 1:
+            adminMenu();
+            break;
+        case 2:
+            consumerMenu();
+            break;
+        case 3:
+            exit(0);
+            break;
+        default:
+            cout<<"\n invalid choice\n";
+        }
+    }while(choice!=3);
+}

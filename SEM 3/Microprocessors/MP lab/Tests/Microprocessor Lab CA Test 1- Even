@@ -1,0 +1,81 @@
+; You may customize this and other start-up templates; 
+; The location of this template is c:\emu8086\inc\0_com_template.txt
+              
+include 'emu8086.inc'             
+org 100h
+
+MOV CX,offset a                ; we use this to store the offset address of the string a in the respective registers to manipulate the string a
+MOV DI,offset a 
+MOV SI,offset a
+MOV DX,100                      
+MOV AX,0                        ; this is used to initialise the general regsiters with 0
+MOV BX,0 
+PRINT "Enter a valid string:"   ; this is used to display enter a valid string on the emulator screen
+PRINTN
+CALL GET_STRING           ;this call  is used to take input of the string
+PRINTN
+LOOP1:
+CMP [DI],0                 
+JZ LABEL3
+CMP [DI],32                 ;these are statements which are used to check the destination indexes value with different cases and process functions with respect to that case
+JE BLANK
+INC DI
+JMP LOOP1
+
+BLANK:  
+CMP [SI],97               ; this compares with 'a' and if the comparison is less then it executes the block
+JL BLOCK
+CMP [SI],122              ; this compares with 'z'and if the comparison is greater then it executes the block
+JG BLOCK
+JMP UPPERCASE             ;if not that means if its not between 'a-z' then it converts to uppercase so we will jump to uppercase block
+
+BLOCK:
+ADD DI,1                  ;this is a loop  which runs through the whole string executing character by character and ADD DI,1 is used for iterating each time
+MOV SI,DI
+JMP LOOP1                 ; jumps to loop1 to convert uppercase after conditional check
+
+UPPERCASE:
+
+MOV AX,[SI]                 ; code which helps to convert characters to uppercase
+SUB AX,32                   ; we subtract the ascii value of 32 to convert it into uppercase ie, suppose we have to convert a to A, w.k.t ascii value of a is 97 
+MOV [SI],AX                 ; and ascii value of A is 65 so 97-65=32 and we subtract that to get the consecutive upper case letters
+ADD DI,1                    ; this is used to increment and extract next character
+MOV SI,DI
+JMP LOOP1  
+
+LABEL3:
+CMP [SI],97                 ; this is again used to comapre if its between 'a-z' and if it is then goes to the parent block to execute further loop
+JL BLOCK
+CMP [SI],122                ; else which jump to upperal block
+JG BLOCK
+JMP UPPERAL
+
+UPPERAL:
+ 
+MOV AX,[SI]                ; here it is used to change the first letter of last word to uppercase
+SUB AX,32
+MOV [SI],AX
+JMP OUTP
+
+
+OUTP:
+
+
+MOV SI,offset a                           ; this set of statements are used to print the output string
+PRINT "The output string is "
+CALL PRINT_STRING
+
+
+
+ret                
+a db 100 dup(0)                   ;declaring the string a
+DEFINE_GET_STRING  
+DEFINE_PRINT_STRING
+DEFINE_PRINT_NUM
+DEFINE_PRINT_NUM_UNS
+
+ret
+
+
+
+

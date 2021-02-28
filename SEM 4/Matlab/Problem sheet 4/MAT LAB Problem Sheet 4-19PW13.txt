@@ -1,0 +1,2156 @@
+19pw13 MATLAB WORKSHEET PS-4
+-----------------------------------------------
+
+1)
+
+function [ y ] = eval( x )
+  
+    a=(x.^4)
+    c=sqrt((3.*x)+5)
+    d=a.*c
+    b=((x.^2+1).^2)
+    y=d./b
+
+end
+
+a)x=6
+
+x =
+
+     6
+
+>> eval(x)
+
+a =
+
+        1296
+
+
+c =
+
+    4.7958
+
+
+d =
+
+   6.2154e+03
+
+
+b =
+
+        1369
+
+
+y =
+
+    4.5401
+
+
+ans =
+
+    4.5401
+
+
+
+b)
+
+x=[1 3 5 7 9 11]
+
+x =
+
+     1     3     5     7     9    11
+
+>> eval(x)
+
+a =
+
+           1          81         625        2401        6561       14641
+
+
+c =
+
+    2.8284    3.7417    4.4721    5.0990    5.6569    6.1644
+
+
+d =
+
+   1.0e+04 *
+
+    0.0003    0.0303    0.2795    1.2243    3.7115    9.0253
+
+
+b =
+
+           4         100         676        2500        6724       14884
+
+
+y =
+
+    0.7071    3.0307    4.1347    4.8971    5.5197    6.0638
+
+
+ans =
+
+    0.7071    3.0307    4.1347    4.8971    5.5197    6.0638
+
+
+
+
+-----------------------------------------------
+
+2)
+
+function [avg,sd ] =avg_and_sd( x )
+% finding avg ad standard deviation
+avg=mean(x)
+sd=std(x)
+end
+
+ x=[80 75 91 60 79 89 65 80 95 50 81]
+
+x =
+
+    80    75    91    60    79    89    65    80    95    50    81
+
+>> [a,b]=avg_and_sd(x)
+
+avg =
+
+   76.8182
+
+
+sd =
+
+   13.6661
+
+
+a =
+
+   76.8182
+
+
+b =
+
+   13.6661
+
+
+
+-----------------------------------------------
+
+3)
+
+function [ y ] =ps4_3(x)
+
+y=((-0.2).*(x.^4))+((x.^3).*(exp(-0.5.*x)))+(7.*(x.^2))
+
+end
+
+(a)ps4_3(-2.5)
+
+y =
+
+  -18.5991
+
+
+ans =
+
+  -18.5991
+
+>> ps4_3(3)
+
+y =
+
+   52.8245
+
+
+ans =
+
+   52.8245
+
+
+(b)
+function ps4_3graph( x,y )
+x=-3:0.1:4
+y=((-0.2).*(x.^4))+((x.^3).*(exp(-0.5.*x)))+(7.*(x.^2))
+plot(x,y)
+end
+
+-----------------------------------------------
+
+4)
+
+function [ x] =polynomial_roots( p )
+x=roots(p)
+end
+
+p=[1 -5 6]
+
+p =
+
+     1    -5     6
+
+>> polynomial_roots(p)
+
+x =
+
+    3.0000
+    2.0000
+
+
+ans =
+
+    3.0000
+    2.0000
+
+-----------------------------------------------
+
+5)
+
+z='enter number'
+x=input(z)
+
+y=mod(x,2)
+if y==0
+    disp('x is even')
+else
+    disp('x is odd')
+   
+end
+    
+enter number5
+
+x =
+
+     5
+
+
+y =
+
+     1
+
+x is odd
+
+-----------------------------------------------
+
+6)
+
+a='enter number 1:'
+z=input(a)
+b='enter numer 2:';
+t=input(b)
+x='1.addition 2.subtraction 3.multiplication 4.division'
+w=input(x)
+x='enter choice:'
+choice=input(x)
+switch(choice)
+    case 1
+        result=z+t
+    case 2
+        result=z-t
+    case 3
+        result=z*t
+    case 4
+        result=z/t
+end
+
+
+enter number 1:45
+
+z =
+
+    45
+
+enter numer 2:56
+
+t =
+
+    56
+
+
+x =
+
+1.addition 2.subtraction 3.multiplication 4.division
+
+1.addition 2.subtraction 3.multiplication 4.division3
+
+x =
+
+enter choice:
+
+enter choice:3
+
+choice =
+
+     3
+
+
+result =
+
+        2520
+
+-----------------------------------------------
+
+7)
+
+a=-80
+if a>0
+    disp('The given number is positive')
+elseif a==0
+    disp('The given number is zero')
+else
+    disp('The given number is negative')
+end
+
+a =
+
+   -80
+
+The given number is negative
+
+-----------------------------------------------
+
+8)
+
+z='enter temp in kelvin'
+x=input(z)
+if x<32
+    disp('ICE')
+elseif x<212
+    disp('WATER')
+else
+    disp('STEAM')
+end
+
+enter temp in kelvin56
+
+x =
+
+    56
+
+WATER
+
+-----------------------------------------------
+
+9)
+
+x='enter a number to chec if its prime or not'
+z=input(x)
+c=1
+if z==1
+    disp('Neither prime nor composite')
+elseif z==2
+    disp('Prime')
+else
+    for i=2:(ceil(sqrt(z)))
+        if mod(z,i)==0
+            c=0
+        end
+    end
+    if c==1
+        disp('Prime')
+    else
+        disp('Composite')
+    end
+end
+
+enter a number to chec if its prime or not55
+
+z =
+
+    55
+
+
+c =
+
+     1
+
+
+c =
+
+     0
+
+Composite
+
+-----------------------------------------------
+
+10)
+
+for i=1:20
+    z=13*i
+    X=sprintf('13* %d=%d',i,z)
+    disp(X)
+end
+
+z =
+
+    13
+
+
+X =
+
+13* 1=13
+
+13* 1=13
+
+z =
+
+    26
+
+
+X =
+
+13* 2=26
+
+13* 2=26
+
+z =
+
+    39
+
+
+X =
+
+13* 3=39
+
+13* 3=39
+
+z =
+
+    52
+
+
+X =
+
+13* 4=52
+
+13* 4=52
+
+z =
+
+    65
+
+
+X =
+
+13* 5=65
+
+13* 5=65
+
+z =
+
+    78
+
+
+X =
+
+13* 6=78
+
+13* 6=78
+
+z =
+
+    91
+
+
+X =
+
+13* 7=91
+
+13* 7=91
+
+z =
+
+   104
+
+
+X =
+
+13* 8=104
+
+13* 8=104
+
+z =
+
+   117
+
+
+X =
+
+13* 9=117
+
+13* 9=117
+
+z =
+
+   130
+
+
+X =
+
+13* 10=130
+
+13* 10=130
+
+z =
+
+   143
+
+
+X =
+
+13* 11=143
+
+13* 11=143
+
+z =
+
+   156
+
+
+X =
+
+13* 12=156
+
+13* 12=156
+
+z =
+
+   169
+
+
+X =
+
+13* 13=169
+
+13* 13=169
+
+z =
+
+   182
+
+
+X =
+
+13* 14=182
+
+13* 14=182
+
+z =
+
+   195
+
+
+X =
+
+13* 15=195
+
+13* 15=195
+
+z =
+
+   208
+
+
+X =
+
+13* 16=208
+
+13* 16=208
+
+z =
+
+   221
+
+
+X =
+
+13* 17=221
+
+13* 17=221
+
+z =
+
+   234
+
+
+X =
+
+13* 18=234
+
+13* 18=234
+
+z =
+
+   247
+
+
+X =
+
+13* 19=247
+
+13* 19=247
+
+z =
+
+   260
+
+
+X =
+
+13* 20=260
+
+13* 20=260
+
+
+--------------------------------------------------------
+
+
+11)
+
+x='*'
+for i=1:4
+    for j=1:i
+        fprintf(x)
+    end
+    fprintf('\n')
+end
+
+x =
+
+*
+
+*
+**
+***
+****
+
+
+-------------------------------------------------
+
+12)
+
+n=5
+
+for i=0:n/2
+    for j=0:n/2-i
+        fprintf(' ')
+    end
+    for k=0:(2*i)
+        fprintf('*')
+    end
+    fprintf('\n')
+end
+for i=0:n/2
+    for j=0:i+1
+        fprintf(' ')
+    end
+    for k=0:n-2-(2*i)-1
+        fprintf('*')
+    end
+    fprintf('\n')
+end
+        
+ n =
+
+     5
+
+   *
+  ***
+ *****
+  ***
+   *
+
+
+-----------------------------------------------
+  
+13)
+
+x='enter number:'
+z=input(x)
+f=1
+for i=2:n
+    f=f*i
+end
+if z==0
+    f=1
+end
+fprintf('The factorial of the number is %d',f)
+
+nter number:5
+
+z =
+
+     5
+
+
+f =
+
+     1
+
+
+f =
+
+     2
+
+
+f =
+
+     6
+
+
+f =
+
+    24
+
+
+f =
+
+   120
+
+The factorial of the number is 120
+
+-----------------------------------------------
+
+14)
+
+f1=-1
+f2=1
+f3=f1+f2
+y=[]
+x='enter n'
+z=input(x)
+while f3<=n
+    y=[y f3]
+    f1=f2
+    f2=f3
+    f3=f1+f2
+end
+
+f1 =
+
+    -1
+
+
+f2 =
+
+     1
+
+
+f3 =
+
+     0
+
+
+y =
+
+     []
+
+
+x =
+
+enter n
+
+enter n5
+
+z =
+
+     5
+
+
+y =
+
+     0
+
+
+f1 =
+
+     1
+
+
+f2 =
+
+     0
+
+
+f3 =
+
+     1
+
+
+y =
+
+     0     1
+
+
+f1 =
+
+     0
+
+
+f2 =
+
+     1
+
+
+f3 =
+
+     1
+
+
+y =
+
+     0     1     1
+
+
+f1 =
+
+     1
+
+
+f2 =
+
+     1
+
+
+f3 =
+
+     2
+
+
+y =
+
+     0     1     1     2
+
+
+f1 =
+
+     1
+
+
+f2 =
+
+     2
+
+
+f3 =
+
+     3
+
+
+y =
+
+     0     1     1     2     3
+
+
+f1 =
+
+     2
+
+
+f2 =
+
+     3
+
+
+f3 =
+
+     5
+
+
+y =
+
+     0     1     1     2     3     5
+
+-----------------------------------------------
+
+15)
+
+sum=0
+for i=2:20
+    x=i*i
+    sum=sum+x
+end
+fprintf('THe sum of squares from 1-20:%d',sum)
+
+sum =
+
+        2869
+
+THe sum of squares from 1-20:2869
+
+-----------------------------------------------
+
+16)
+
+sum=0
+for i=1:501
+    if mod(i,2)==1
+        sum=sum+i
+    end
+end
+fprintf('sum of odd numbers from 1-501=%d',sum)
+
+
+sum of odd numbers from 1-501=63001
+
+-----------------------------------------------
+
+17)
+
+principle=100000
+rate=(8/100)
+x=[]
+for i=1:30
+    amount=principle*(1+rate)
+    x=[x amount]
+    principle=amount
+end
+y=1:1:30
+plot(y,x)
+
+amount =
+
+   1.0063e+06
+
+
+x =
+
+   1.0e+06 *
+
+  Columns 1 through 12
+
+    0.1080    0.1166    0.1260    0.1360    0.1469    0.1587    0.1714    0.1851    0.1999    0.2159    0.2332    0.2518
+
+  Columns 13 through 24
+
+    0.2720    0.2937    0.3172    0.3426    0.3700    0.3996    0.4316    0.4661    0.5034    0.5437    0.5871    0.6341
+
+  Columns 25 through 30
+
+    0.6848    0.7396    0.7988    0.8627    0.9317    1.0063
+
+
+principle =
+
+   1.0063e+06
+
+
+y =
+
+  Columns 1 through 20
+
+     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18    19    20
+
+  Columns 21 through 30
+
+    21    22    23    24    25    26    27    28    29    30
+
+-----------------------------------------------
+
+18)
+
+p=5000
+r=0.09
+amount=p*(1+r)
+t=1
+while amount<1000000
+    p=amount
+    amount=p*(1+r)
+    t=t+1
+end
+t=t+25
+fprintf('His age when amount is 1 million is %d',t) 
+  
+amount =
+
+   1.0457e+06
+
+
+t =
+
+    62
+
+
+t =
+
+    87
+
+His age when amount is 1 million is 87
+
+-----------------------------------------------
+
+19)
+
+function [ mps ] =mphTOmps(x )
+mps=x/2.237
+end
+
+
+mphTOmps(55)
+
+mps =
+
+   24.5865
+
+
+ans =
+
+   24.5865
+
+-----------------------------------------------
+
+20)
+
+function [ AREA ] = triangle(a,b,c )
+p=(a+b+c)/2
+AREA=sqrt(p*(p-a)*(p-b)*(p-c))
+
+end
+
+
+(a)
+a=3
+
+a =
+
+     3
+
+>> b=8
+
+b =
+
+     8
+
+>> c=10
+
+c =
+
+    10
+
+>> triangle(a,b,c)
+
+p =
+
+   10.5000
+
+
+AREA =
+
+    9.9216
+
+
+ans =
+
+    9.9216
+
+(b)
+ a=7
+
+a =
+
+     7
+
+>> b=7
+
+b =
+
+     7
+
+>> c=5
+
+c =
+
+     5
+
+>> triangle(a,b,c)
+
+p =
+
+    9.5000
+
+
+AREA =
+
+   16.3459
+
+
+ans =
+
+   16.3459
+
+-----------------------------------------------
+
+21)
+
+
+function:
+
+function [ g ] = fgrade( R )
+g=[]
+l=size(R,1)
+
+for i=1:l
+    hw=[]
+    midterms=[]
+    for j=1:6
+        w=R(i,j)
+        hw=[hw w]
+            
+    end
+    for j=7:9
+        midterms=[midterms R(i,j)]
+    end
+    finals=R(i,10)
+    hw=sort(hw)
+    hwto5=hw(2:6)
+    hwforgrade=mean(hwto5)/100*15
+    midterms1=mean(midterms)
+    if midterms1>=finals
+        midtermsforgrade=midterms1*85/100
+        m=midtermsforgrade+hwforgrade
+    else
+        midtermsforgrade=midterms1*45/100
+        finalsforgrade=finals*40/100
+        m=midtermsforgrade+hwforgrade+finalsforgrade
+    end
+    g=[g m]
+        
+
+end
+
+script:
+x='enter matrix to calculate grades of students'
+a=[]
+a=input(x)
+fgrade(a)
+
+(a)
+R=[8 9 6 10 9 7 76 86 91 80] 
+
+R =
+
+     8     9     6    10     9     7    76    86    91    80
+
+>> fgrade(R)
+
+g =
+
+     []
+
+
+l =
+
+     1
+
+
+hw =
+
+     []
+
+
+midterms =
+
+     []
+
+
+w =
+
+     8
+
+
+hw =
+
+     8
+
+
+w =
+
+     9
+
+
+hw =
+
+     8     9
+
+
+w =
+
+     6
+
+
+hw =
+
+     8     9     6
+
+
+w =
+
+    10
+
+
+hw =
+
+     8     9     6    10
+
+
+w =
+
+     9
+
+
+hw =
+
+     8     9     6    10     9
+
+
+w =
+
+     7
+
+
+hw =
+
+     8     9     6    10     9     7
+
+
+midterms =
+
+    76
+
+
+midterms =
+
+    76    86
+
+
+midterms =
+
+    76    86    91
+
+
+finals =
+
+    80
+
+
+hw =
+
+     6     7     8     9     9    10
+
+
+hwto5 =
+
+     7     8     9     9    10
+
+
+hwforgrade =
+
+    1.2900
+
+
+midterms1 =
+
+   84.3333
+
+
+midtermsforgrade =
+
+   71.6833
+
+
+m =
+
+   72.9733
+
+
+g =
+
+   72.9733
+
+
+ans =
+
+   72.9733
+
+
+(b)
+enter matrix to calculate grades of students[7 10 6 9 10 9 91 71 81 88;5 5 6 1 8 6 59 72 66 59;6 8 10 4 5 9 72 78 84 78;7 7 8 8 9 8 83 82 81 84]
+
+a =
+
+     7    10     6     9    10     9    91    71    81    88
+     5     5     6     1     8     6    59    72    66    59
+     6     8    10     4     5     9    72    78    84    78
+     7     7     8     8     9     8    83    82    81    84
+
+
+g =
+
+     []
+
+
+l =
+
+     4
+
+
+hw =
+
+     []
+
+
+midterms =
+
+     []
+
+
+w =
+
+     7
+
+
+hw =
+
+     7
+
+
+w =
+
+    10
+
+
+hw =
+
+     7    10
+
+
+w =
+
+     6
+
+
+hw =
+
+     7    10     6
+
+
+w =
+
+     9
+
+
+hw =
+
+     7    10     6     9
+
+
+w =
+
+    10
+
+
+hw =
+
+     7    10     6     9    10
+
+
+w =
+
+     9
+
+
+hw =
+
+     7    10     6     9    10     9
+
+
+midterms =
+
+    91
+
+
+midterms =
+
+    91    71
+
+
+midterms =
+
+    91    71    81
+
+
+finals =
+
+    88
+
+
+hw =
+
+     6     7     9     9    10    10
+
+
+hwto5 =
+
+     7     9     9    10    10
+
+
+hwforgrade =
+
+    1.3500
+
+
+midterms1 =
+
+    81
+
+
+midtermsforgrade =
+
+   36.4500
+
+
+finalsforgrade =
+
+   35.2000
+
+
+m =
+
+    73
+
+
+g =
+
+    73
+
+
+hw =
+
+     []
+
+
+midterms =
+
+     []
+
+
+w =
+
+     5
+
+
+hw =
+
+     5
+
+
+w =
+
+     5
+
+
+hw =
+
+     5     5
+
+
+w =
+
+     6
+
+
+hw =
+
+     5     5     6
+
+
+w =
+
+     1
+
+
+hw =
+
+     5     5     6     1
+
+
+w =
+
+     8
+
+
+hw =
+
+     5     5     6     1     8
+
+
+w =
+
+     6
+
+
+hw =
+
+     5     5     6     1     8     6
+
+
+midterms =
+
+    59
+
+
+midterms =
+
+    59    72
+
+
+midterms =
+
+    59    72    66
+
+
+finals =
+
+    59
+
+
+hw =
+
+     1     5     5     6     6     8
+
+
+hwto5 =
+
+     5     5     6     6     8
+
+
+hwforgrade =
+
+    0.9000
+
+
+midterms1 =
+
+   65.6667
+
+
+midtermsforgrade =
+
+   55.8167
+
+
+m =
+
+   56.7167
+
+
+g =
+
+   73.0000   56.7167
+
+
+hw =
+
+     []
+
+
+midterms =
+
+     []
+
+
+w =
+
+     6
+
+
+hw =
+
+     6
+
+
+w =
+
+     8
+
+
+hw =
+
+     6     8
+
+
+w =
+
+    10
+
+
+hw =
+
+     6     8    10
+
+
+w =
+
+     4
+
+
+hw =
+
+     6     8    10     4
+
+
+w =
+
+     5
+
+
+hw =
+
+     6     8    10     4     5
+
+
+w =
+
+     9
+
+
+hw =
+
+     6     8    10     4     5     9
+
+
+midterms =
+
+    72
+
+
+midterms =
+
+    72    78
+
+
+midterms =
+
+    72    78    84
+
+
+finals =
+
+    78
+
+
+hw =
+
+     4     5     6     8     9    10
+
+
+hwto5 =
+
+     5     6     8     9    10
+
+
+hwforgrade =
+
+    1.1400
+
+
+midterms1 =
+
+    78
+
+
+midtermsforgrade =
+
+   66.3000
+
+
+m =
+
+   67.4400
+
+
+g =
+
+   73.0000   56.7167   67.4400
+
+
+hw =
+
+     []
+
+
+midterms =
+
+     []
+
+
+w =
+
+     7
+
+
+hw =
+
+     7
+
+
+w =
+
+     7
+
+
+hw =
+
+     7     7
+
+
+w =
+
+     8
+
+
+hw =
+
+     7     7     8
+
+
+w =
+
+     8
+
+
+hw =
+
+     7     7     8     8
+
+
+w =
+
+     9
+
+
+hw =
+
+     7     7     8     8     9
+
+
+w =
+
+     8
+
+
+hw =
+
+     7     7     8     8     9     8
+
+
+midterms =
+
+    83
+
+
+midterms =
+
+    83    82
+
+
+midterms =
+
+    83    82    81
+
+
+finals =
+
+    84
+
+
+hw =
+
+     7     7     8     8     8     9
+
+
+hwto5 =
+
+     7     8     8     8     9
+
+
+hwforgrade =
+
+    1.2000
+
+
+midterms1 =
+
+    82
+
+
+midtermsforgrade =
+
+   36.9000
+
+
+finalsforgrade =
+
+   33.6000
+
+
+m =
+
+   71.7000
+
+
+g =
+
+   73.0000   56.7167   67.4400   71.7000
+
+
+ans =
+
+   73.0000   56.7167   67.4400   71.7000
+
+
+
+-----------------------------------------------
+
+
+22)
+
+x=1:2:9999
+sum=0
+c=0
+for i=1:9999/2
+    sq=x(i)*x(i)*(-1^c)
+    sum=sum+sq
+    c=c+1
+end
+    
+sum =
+
+  -1.6657e+11
+
+
+-----------------------------------------------
+
+23)
+
+x='enter n'
+n=input(x)
+y=[]
+for i=2:n
+    if mod(i,2)==0
+        f=sqrt(i)
+        y=[y f]
+    end
+end
+
+enter n20
+
+n =
+
+    20
+y =
+
+    1.4142    2.0000    2.4495    2.8284    3.1623    3.4641    3.7417    4.0000    4.2426    4.4721
+
+
+-----------------------------------------------
+24)
+
+sum=2
+for i=3:999
+    c=1
+    for j=2:i/2
+        if mod(i,j)==0
+            c=0
+        end
+    end
+    if c==1
+        sum=sum+i
+    end
+end
+fprintf('Te sum of all 1 digit,2 digit, 3 digit prime numbers:%d',sum)
+
+Te sum of all 1 digit,2 digit, 3 digit prime numbers:76127
+
+
+-----------------------------------------------
+25)
+
+sum=0
+for i=2:50
+    c=1
+    for j=2:i/2
+        if mod(i,j)==0
+            c=0
+        end
+    end
+    if c==0
+        sum=sum+i
+    end
+end
+fprintf('The sum of composite numbers from 1 to 50:%d',sum)
+
+sum =
+
+   946
+
+The sum of composite numbers from 1 to 50:946
+
+-----------------------------------------------
+26)
+
+a=3
+b=10
+n=1
+while r~=5
+r=a+rand(1,n)*(b-a)
+r=round(r)
+end
+
+a =
+
+     3
+
+
+b =
+
+    10
+
+
+n =
+
+     1
+
+
+r =
+
+    6.4297
+
+
+r =
+
+     6
+
+
+r =
+
+    8.0714
+
+
+r =
+
+     8
+
+
+r =
+
+    5.5678
+
+
+r =
+
+     6
+
+
+r =
+
+    6.6085
+
+
+r =
+
+     7
+
+
+r =
+
+    3.1539
+
+
+r =
+
+     3
+
+
+r =
+
+    6.3498
+
+
+r =
+
+     6
+
+
+r =
+
+    8.5317
+
+
+r =
+
+     9
+
+
+r =
+
+    9.9547
+
+
+r =
+
+    10
+
+
+r =
+
+    8.0220
+
+
+r =
+
+     8
+
+
+r =
+
+    7.5855
+
+
+r =
+
+     8
+
+
+r =
+
+    8.9694
+
+
+r =
+
+     9
+
+
+r =
+
+    7.2915
+
+
+r =
+
+     7
+
+
+r =
+
+    6.2392
+
+
+r =
+
+     6
+
+
+r =
+
+    3.7199
+
+
+r =
+
+     4
+
+
+r =
+
+    8.2439
+
+
+r =
+
+     8
+
+
+r =
+
+    6.4528
+
+
+r =
+
+     6
+
+
+r =
+
+    5.8142
+
+
+r =
+
+     6
+
+
+r =
+
+    3.0110
+
+
+r =
+
+     3
+
+
+r =
+
+    6.5282
+
+
+r =
+
+     7
+
+
+r =
+
+    6.1232
+
+
+r =
+
+     6
+
+
+r =
+
+    5.3245
+
+
+r =
+
+     5
+
+
+-----------------------------------------------
+27)
+
+a=3
+b=10
+n=1
+x=[]
+count=0
+while count~=10
+r=a+rand(1,n)*(b-a)
+x=[x r]
+count=count+1
+end
+
+x =
+
+    7.6520    7.4645    9.4709    5.8791    5.4111    3.4944    4.8518    8.6110    9.6733    3.0851
+
+
+
+
+

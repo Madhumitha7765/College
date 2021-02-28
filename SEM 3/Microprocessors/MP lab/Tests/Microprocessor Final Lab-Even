@@ -1,0 +1,234 @@
+; You may customize this and other start-up templates; 
+; The location of this template is c:\emu8086\inc\0_com_template.txt
+
+INCLUDE 'emu8086.inc'
+
+ORG 100h
+
+MOV AL, 175
+MOV AH, 25h         ;175 FOR UNION
+LEA DX, union
+INT 21h
+
+MOV AL, 176
+MOV AH, 25h               ;176 FOR INTERSECTION
+LEA DX, intersection
+INT 21h
+
+
+MOV AL, 177
+MOV AH, 25h                   ;177 FOR DIFFERENCE
+LEA DX, difference
+INT 21h
+
+PRINTN " 1 - union, 2 - intersection 3 -  difference 4-exit"
+
+MOV AH, 1
+INT 21h
+                       ;THESE STATEMENTS ARE MADE TO JUMP ACCORDING TO THE OPTION MENTIONED ABOVE
+CMP AL, '1'
+
+JE case_1
+
+CMP AL, '2'
+
+JE case_2
+
+CMP AL, '3'
+
+JE case_3
+
+CMP AL, '4'
+
+JE case_4 
+
+
+case_1:
+INT 175
+JMP LAST
+
+case_2:
+INT 176
+JMP LAST
+
+case_3:
+INT 177
+JMP LAST
+
+case_4:
+JMP LAST
+
+LAST:
+
+RET
+
+A DB '0', '1', '2', '3', '4', '5', '$'
+B DB '4', '5', '6', '7', '8', '9', '$'
+
+result DB ?, '$'
+
+
+union:                       ;UNION IS BASICALLY OR OPERATION PERFORMED 
+
+MOV DI, OFFSET result
+MOV SI, OFFSET A
+MOV BX, OFFSET B
+
+loop_1:
+    
+    CMP [SI], '$'         
+    JE end_set_1
+                          ; THESE ARE STATEMENTS TO COMPARE TWO SETS UNTIL THE $ SYMBOL ie. TILL LAST ELEMENT
+    CMP [BX], '$'
+    JE end_set_2
+    
+    MOV CH, [BX]
+    MOV CL, [SI]
+    CMP CL, CH
+    
+    JE onetime
+    
+    JMP twotime:
+    
+    onetime:
+        MOV CH, [SI]
+        MOV [DI], CH
+        INC SI                  ;ONE TIME FOUND
+        INC BX
+        INC DI
+        JMP loop_1
+        
+    
+    twotime:
+        MOV CH, [SI]
+        MOV [DI], CH
+        INC SI
+        INC DI                     ;TWO TIME FOUND
+        MOV CH, [BX]
+        MOV [DI], CH
+        INC BX
+        INC DI
+        JMP loop_1    
+    
+    end_set_1:
+        
+        CMP [BX], '$'
+        JMP endloop
+        
+        
+        MOV CH, [BX]                  ;1ST SET COMPARISON ENDS
+        MOV [DI], CH
+        INC BX
+        INC DI
+        JMP loop_1 
+        
+    end_set_2:
+    
+        CMP [SI], '$'
+        JMP endloop
+        
+        MOV CH, [SI]                   ;2NDT SET COMPARISON ENDS
+        MOV [DI], CH
+        INC SI
+        INC DI
+        JMP loop_1  
+            
+         
+endloop:
+MOV [DI], '$'
+
+
+
+IRET
+ 
+
+                           
+intersection:              ;INTERSECTION IS BASICALLY 'AND' OPERATION
+MOV DI, OFFSET result
+MOV SI, OFFSET A
+MOV BX, OFFSET B
+
+PUSH DI    
+PUSH BX
+set1:
+    MOV AL, [BX]
+    
+    CMP AL, '$'
+    JE end_set1
+        
+    PUSH SI
+    set2:
+        MOV AH, [SI]
+    
+        CMP AH, '$'   
+        JE end_set2
+       
+        CMP AL, AH             ;NOT PRESENT MEANS NEXT ELEMENT TAKEN
+        JNE not_present
+            MOV [DI], AL        
+            INC DI
+            JMP end_set2
+        not_present:
+        INC SI        
+        JMP set2
+        
+    end_set2:
+    POP SI
+    INC BX
+    JMP set1
+    
+end_set1:
+MOV DI, '$'
+POP BX
+POP DI 
+IRET
+
+
+difference:             ;DIFFERENCE IS BASICALLY - OPERATION 
+
+PUSH DI    
+    PUSH BX
+    set1_iteration_difference:
+        MOV AL, [BX]
+        
+        CMP AL, '$'
+        JE end_set1_iteration_difference
+            
+        PUSH SI
+        MOV CX, 1 
+        set2_iteration_difference:
+            MOV AH, [SI]
+        
+            CMP AH, '$'   
+            JE end_set2_iteration_difference
+           
+            CMP AL, AH    
+            JNE not_present_in_other_difference
+                MOV CX, 0                
+                JMP end_set2_iteration_difference
+            not_present_in_other_difference:
+            INC SI        
+            JMP set2_iteration_difference
+            
+        end_set2_iteration_difference:
+        CMP CX, 0
+        JE dont_append_difference
+            MOV [DI], AL        
+            INC DI
+            dont_append_difference:
+         
+        POP SI 
+        INC BX
+        JMP set1_iteration_difference
+        
+    end_set1_iteration_difference:
+    MOV DI, '$'
+    POP BX
+    POP DI 
+IRET
+
+
+END
+
+
+

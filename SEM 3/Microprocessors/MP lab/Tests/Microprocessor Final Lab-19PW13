@@ -1,0 +1,257 @@
+
+;19PW13
+;QUESTION A
+
+
+; You may customize this and other start-up templates; 
+; The location of this template is c:\emu8086\inc\0_com_template.txt
+
+org 100h
+
+.data
+        A db 6
+        B db 2
+   
+   
+   
+        msg_min db 10,  " 0 .Minimum $"
+        msg_max db 10,  " 1 .Maximum $"
+        msg_avg db 10,  " 2 .Avg $" 
+        msg_swap db 10, " 3 .Swap $"
+        msg_mul db 10,  " 4 .Multiply $"
+        msg_div db 10, "  5 .Divide $"
+        message db 10,  "Enter your choice: $"
+        msg_wrong db 10,  "Please enter correct choice $"
+        msg_verify db 10, "First operand sholud be greater than 2nd,Please change input values $"  
+        
+          
+          
+          
+.code
+main: 
+        mov ax,@data
+        mov ds,ax
+                       
+    lea dx,msg_min    ;MIN message display
+    mov ah,9h
+    int 21h  
+    
+    MOV dl, 10
+    MOV ah, 02h
+    INT 21h
+    MOV dl, 13
+    MOV ah, 02h
+    INT 21h
+   
+    lea dx,msg_max    ;MAX message display
+    mov ah,9h
+    int 21h 
+    
+    MOV dl, 10
+    MOV ah, 02h
+    INT 21h
+    MOV dl, 13
+    MOV ah, 02h
+    INT 21h
+
+    lea dx,msg_avg    ;AVG message display
+    mov ah,9h
+    int 21h  
+    
+    MOV dl, 10
+    MOV ah, 02h
+    INT 21h
+    MOV dl, 13
+    MOV ah, 02h
+    INT 21h
+   
+        
+    lea dx,msg_swap  ;SWAP message display
+    mov ah,9h
+    int 21h 
+    
+    MOV dl, 10
+    MOV ah, 02h
+    INT 21h
+    MOV dl, 13
+    MOV ah, 02h
+    INT 21h 
+    
+    lea dx,msg_mul  ;MUL message display
+    mov ah,9h
+    int 21h   
+    
+    MOV dl, 10
+    MOV ah, 02h
+    INT 21h
+    MOV dl, 13
+    MOV ah, 02h
+    INT 21h
+    
+    lea dx,msg_div  ;DIV message display
+    mov ah,9h
+    int 21h   
+    
+    MOV dl, 10
+    MOV ah, 02h
+    INT 21h
+    MOV dl, 13
+    MOV ah, 02h
+    INT 21h
+        
+    lea dx,message  ; message
+    mov ah,9h
+    int 21h     
+    
+    MOV dl, 10
+    MOV ah, 02h
+    INT 21h
+    MOV dl, 13
+    MOV ah, 02h
+    INT 21h
+    
+;;;;;;;;;;;;;;;;;;;;   
+   
+    mov ah,1                 ;read key from user
+    int 21h
+    mov ah,0                 ;empty the ah ,upper part of ax
+   
+    sub al,30h              ; subtract 30h to get exact value from ascii
+   
+    shl al,1                ; multiply number by 2 to get to the case
+    cmp al,10                ;compare for validity
+    jg check                ;jump if al,greater than 4
+    mov bx,ax               ;mov value of ax to bx for offset
+    jmp cs:jmptble [bx]          ;jumptable
+
+jmptble dw case0,case1,case2,case3,case4,case5 ;cases   
+   
+
+check:
+    lea dx,msg_wrong        ;Display wrong choice
+    mov ah,9h           
+    int 21h
+    mov dl,10            ;Move to new line
+    mov ah,2h
+    int 21h
+    jmp main            ;Loop again to get correct choice
+
+
+
+
+;MIN(A,B)
+case0:                    
+    MOV     AL,A
+	MOV     BL,B
+	CMP     AL, BL
+	jle **
+	MOV     AL,BL
+	**: MOV al,al
+    call display   
+    jmp endlabel            ;jum to endlabel 
+
+
+
+
+;MAX(A,B)
+case1:
+    MOV     AL,A
+	MOV     BL,B
+	CMP     AL, BL
+	jge *^
+	MOV     AL,BL
+	*^: MOV al,al
+    call display   
+    jmp endlabel  
+
+
+
+;AVG(A,B)
+case2:
+          
+   mov dl,10            ;move to new line
+    mov ah,2h
+    int 21h
+   
+    mov al,A            ;copy num1 to al
+    xor ah,ah            ;empty ah to zero   
+    add al,B             ; add num2 to al
+    call display   
+    jmp endlabel
+      
+
+
+
+;SWAP(A,B)
+case3:                    
+   MOV     AL, A
+	MOV     BL, AL
+	MOV     AL, B
+	MOV     A, AL
+	MOV     B, BL
+	call display
+	jmp endlabel
+           
+           
+ 
+;MUL(A,B)          
+case4:
+            mov al,A
+            mov bl,B
+            MOV    al, 0
+        L: ADD    al, bl
+            ADC    dl, 0
+            LOOP   L 
+            
+            call display
+            jmp endlabel
+
+
+;DIV(A,B)
+case5:
+            mov al,A
+            mov bl,B
+            MOV    al, 0
+        L1: sub    al, bl
+            ADC    dl, 0
+            LOOP   L1 
+            
+            call display
+            jmp endlabel
+
+
+
+
+verify:   
+        lea dx,msg_verify
+    mov ah,9
+    int 21h
+display:     
+
+
+    
+mov dl,10            ;mov dl,10 to divide result in ax
+        div dl                ;Dvide ax by 10
+        mov dl,al            ;copy quotient to dl
+        mov bl,ah            ;copy remainder to bl
+        add dl,30h                ;add 30h to get actual number
+        mov ah,2h            ;Service # to display character
+    int 21h                ;Call OS to do the job
+    add bl,30h            ;add 30h to remainder
+    mov dl,bl            ;move to dl to display
+        mov ah,2h            ;Service # to display character
+        int 21h             ;Call OS to do the job
+        ret
+   
+          
+endlabel:
+    mov ah,4ch
+    int 21h
+
+end main
+
+ret
+
+
+
+

@@ -1,0 +1,146 @@
+#include<iostream>
+using namespace std;
+#include "country.h"
+
+void country::input()
+{
+
+    cout<<"\n enter the name of the country\n";
+    cin>>name;
+    cout<<"\n enter the area of the country( in sq.kms)\n";
+    cin>>area;
+    cout<<"\n enter the population of the country\n";
+    cin>>pop;
+
+}
+
+void country::output()
+{
+    cout<<"\n Name of the country:"<<name<<"\n";
+    cout<<"\n Area of the country:"<<area<<"\n";
+    cout<<"\n Population of the country:"<<pop<<"\n";
+
+}
+
+float country::ret_area()
+{
+    return area;
+}
+
+float country::ret_pop()
+{
+
+    return pop;
+}
+
+float country::popdensity()
+{
+    float x;
+    x=(float)pop/area;
+    return x;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#ifndef COUNTRY_H_INCLUDED
+#define COUNTRY_H_INCLUDED
+ class country
+{
+    private:
+    int pop;
+    float area;
+    char name[50];
+    public:
+        void input();
+        void output();
+        float ret_area();
+        float ret_pop();
+        float popdensity();
+
+};
+
+#endif // COUNTRY_H_INCLUDED
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+
+using namespace std;
+#include "country.h"
+int main()
+{
+    country c[10];
+   int i,m1,m2,m3,p,n;
+   cout<<"\n enter the number of countries you want to enter\n";
+   cin>>n;
+   cout<<"\n enter the details of each country one by one\n";
+   for(i=0;i<n;i++)
+   c[i].input();
+// code to calculate max area
+    m1=c[0].ret_area();
+    p=0;
+    for(i=1;i<n;i++)
+    {
+        if(c[i].ret_area()>m1)
+        {
+           // m1=c[i].ret_area();
+            p=i;
+        }
+    }
+    cout<<"\n Details of  country with largest area is \n ";
+    c[p].output();
+
+ // code to calculate max population
+        m2=c[0].ret_pop();
+        p=0;
+    for(i=1;i<n;i++)
+    {
+        if(c[i].ret_pop()>m2)
+        {
+          // m2=c[i].ret_pop();
+            p=i;
+        }
+    }
+    cout<<"\n Details of country with largest population is \n";
+    c[p].output();
+p=0;
+
+        m3=c[0].popdensity();
+    for(i=1;i<n;i++)
+    {
+        if(c[i].popdensity()>m3)
+        {
+          // m3=c[i].popdensity();
+            p=i;
+        }
+    }
+    cout<<"\n Details of country with largest population  density is \n";
+    c[p].output();
+
+
+}

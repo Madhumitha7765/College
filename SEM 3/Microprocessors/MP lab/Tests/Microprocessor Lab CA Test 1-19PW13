@@ -1,0 +1,114 @@
+
+;QUESTION A
+;19PW13
+
+org 100h
+
+.data 
+
+
+STRING1 DB 'MAINSTRING'
+LEN1 DW ($-STRING1)        ;len1 contains the length of string1
+STRING2 DB 'MAIN'
+LEN2 DW ($-STRING2)        ;len2 contains the length of string2
+ 
+ 
+ 
+ 
+.code         
+
+
+
+LEA SI,STRING1
+LEA DI,STRING2
+MOV DX,LEN1
+MOV CX,LEN2
+CMP CX,DX               ;length of main & substring are compared
+JA EXIT                 ;exits if length of substring(string2) > length of main string(string1) then its not substring of string1
+JE EQUALLEN             ;length of main string == sub string i.e,both have same length,compare directly
+JB SEARCH1              ;if substring length < mainstring length                 
+
+
+
+SEARCH1: 
+
+       
+        MOV BL,[SI]     ;stores  ascii value of current character of mainstring(string1) 
+        MOV BH,[DI]     ;stores  ascii value of current character of substring(string2)
+        CMP BL,BH       ;comparing both character
+        JE CHECK        ;if both characters equal,it jumps to check
+        JNE NOTEQUAL    ;if not equal jumps to notequal label
+        
+        
+        
+        
+SEARCH2:              
+            
+            
+        ;case when substring(string2) not found starting from the current character of string1, 
+        ;so we check possibility of match starting from next character in string1
+        
+        
+        
+        MOV SI,SP       ;going to the next character of main string (after REPE CMPSB of CHECK segment)
+        DEC DX          ;decrements dx
+        LEA DI,STRING2  ;reloads index of substring(string2) in DI (after REPE CMPSB of CHECK segment)
+        JMP SEARCH1     ;if a character matches but the substring following it mismatches in main string(string1)
+                        ;then proceed from the next character of main string by going to SEARCH1 segment         
+        
+        
+EQUALLEN: 
+
+
+        CLD             ;clears the direction flag.when df is 0,string operations increment SI and DI 
+        REPE CMPSB      ;compares  byte address at si with  byte address in di
+        JNE NOTFOUND    ;redirects to notfound label if comparison fails
+        JMP FOUND       ;redirects to found label if comparison succeeds
+        
+        
+
+NOTEQUAL:
+
+
+        INC SI          ;point to the next char of mainstring(string1) if both character don't match 
+        DEC DX          ;DX checks how many character of mainstring(string1) is left to process
+        CMP DX,0000H    ;checking if there are any character left in the main string for further comparison 
+        JE NOTFOUND     ;if no character is left in string1 then  the substring doesn't exists in main string
+        JMP SEARCH1
+
+CHECK:     
+
+
+        MOV CX,LEN2     ;storing length of the substring in CX would limit the number of characters for comparison to exact length of substring
+                        ; CX is used internally for REPE CMPSB                
+        MOV SP,SI       ;storing the index of current character of string1 so if the following REPE CMPSB find mismatch then the process can be started over from the next character of string1 
+        ADD SP,0001H   
+        CLD
+        REPE CMPSB
+        JNE SEARCH2     ;redirects to search2 if comparison fails,tries from next char of string1
+        JMP FOUND       ;unconditional jump to found label in case string2 is found
+
+
+FOUND:  
+        MOV AL,01H     ;string2 is substring of string1,so AL takes value of 1
+        JMP EXIT
+
+
+NOTFOUND:    
+        MOV AL,00H     ;string2 is not substring of string1,so AL takes value of 0
+        JMP EXIT
+
+EXIT:   
+
+        MOV AH,4CH
+        INT 21H      
+   
+   
+END
+RET
+
+
+
+
+
+

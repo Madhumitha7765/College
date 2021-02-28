@@ -1,0 +1,203 @@
+# depslib dependency file v1.0
+1595660232 source:c:\users\sakthi\desktop\package\shoppingcart\item.cpp
+	"item.h"
+	<iostream>
+	<fstream>
+	<cstring>
+	"item.h"
+
+1595649321 c:\users\sakthi\desktop\package\shoppingcart\item.h
+
+1595662079 source:c:\users\sakthi\desktop\package\shoppingcart\main.cpp
+	<iostream>
+	<fstream>
+	"masks.h"
+	"item.h"
+	"shoppingcart.h"
+	"sanitisers.h"
+	"handwash.h"
+	"shoppingmall.h"
+
+1595650002 c:\users\sakthi\desktop\package\shoppingcart\masks.h
+	"item.h"
+
+1595660926 source:c:\users\sakthi\desktop\package\shoppingcart\handwash.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"item.h"
+	"handwash.h"
+	"shoppingcart.h"
+
+1595655735 c:\users\sakthi\desktop\package\shoppingcart\handwash.h
+
+1595660926 source:c:\users\sakthi\desktop\package\shoppingcart\masks.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"item.h"
+	"masks.h"
+	"shoppingcart.h"
+
+1595660926 source:c:\users\sakthi\desktop\package\shoppingcart\sanitisers.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"item.h"
+	"sanitisers.h"
+	"shoppingcart.h"
+
+1595655703 c:\users\sakthi\desktop\package\shoppingcart\sanitisers.h
+
+1595664051 source:c:\users\sakthi\desktop\package\shoppingcart\shoppingmall.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"shoppingmall.h"
+
+1595661506 c:\users\sakthi\desktop\package\shoppingcart\shoppingmall.h
+
+1595663775 source:c:\users\sakthi\desktop\package\shoppingcart\shoppingcart.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"shoppingcart.h"
+
+1595662277 c:\users\sakthi\desktop\package\shoppingcart\shoppingcart.h
+
+1595671920 source:c:\users\madhu\desktop\handwash.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"item.h"
+	"handwash.h"
+	"shoppingcart.h"
+
+1595671920 c:\users\madhu\desktop\item.h
+
+1595671920 c:\users\madhu\desktop\handwash.h
+
+1595671920 c:\users\madhu\desktop\shoppingcart.h
+
+1595671920 source:c:\users\madhu\desktop\item.cpp
+	"item.h"
+	<iostream>
+	<fstream>
+	<cstring>
+	"item.h"
+
+1595671920 source:c:\users\madhu\desktop\masks.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"item.h"
+	"masks.h"
+	"shoppingcart.h"
+
+1595671920 c:\users\madhu\desktop\masks.h
+	"item.h"
+
+1595671920 source:c:\users\madhu\desktop\sanitisers.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"item.h"
+	"sanitisers.h"
+	"shoppingcart.h"
+
+1595671920 c:\users\madhu\desktop\sanitisers.h
+
+1595671920 source:c:\users\madhu\desktop\shoppingcart.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"shoppingcart.h"
+
+1595672024 source:c:\users\madhu\desktop\main.cpp
+	<iostream>
+	<fstream>
+	"masks.h"
+	"item.h"
+	"shoppingcart.h"
+	"sanitisers.h"
+	"handwash.h"
+	"shoppingmall.h"
+	<stdlib.h>
+
+1595671920 c:\users\madhu\desktop\shoppingmall.h
+
+1595672048 source:c:\users\madhu\desktop\shoppingmall.cpp
+	<iostream>
+	<fstream>
+	<stdlib.h>
+	<cstring>
+	"shoppingmall.h"
+
+1595671920 source:c:\users\madhu\desktop\madhu\c++ finalised packages\sakthi\handwash.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"item.h"
+	"handwash.h"
+	"shoppingcart.h"
+
+1595671920 c:\users\madhu\desktop\madhu\c++ finalised packages\sakthi\item.h
+
+1595671920 c:\users\madhu\desktop\madhu\c++ finalised packages\sakthi\handwash.h
+
+1595671920 c:\users\madhu\desktop\madhu\c++ finalised packages\sakthi\shoppingcart.h
+
+1595671920 source:c:\users\madhu\desktop\madhu\c++ finalised packages\sakthi\item.cpp
+	"item.h"
+	<iostream>
+	<fstream>
+	<cstring>
+	"item.h"
+
+1595672024 source:c:\users\madhu\desktop\madhu\c++ finalised packages\sakthi\main.cpp
+	<iostream>
+	<fstream>
+	"masks.h"
+	"item.h"
+	"shoppingcart.h"
+	"sanitisers.h"
+	"handwash.h"
+	"shoppingmall.h"
+	<stdlib.h>
+
+1595671920 c:\users\madhu\desktop\madhu\c++ finalised packages\sakthi\masks.h
+	"item.h"
+
+1595671920 c:\users\madhu\desktop\madhu\c++ finalised packages\sakthi\sanitisers.h
+
+1595671920 c:\users\madhu\desktop\madhu\c++ finalised packages\sakthi\shoppingmall.h
+
+1595671920 source:c:\users\madhu\desktop\madhu\c++ finalised packages\sakthi\masks.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"item.h"
+	"masks.h"
+	"shoppingcart.h"
+
+1595671920 source:c:\users\madhu\desktop\madhu\c++ finalised packages\sakthi\sanitisers.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"item.h"
+	"sanitisers.h"
+	"shoppingcart.h"
+
+1595671920 source:c:\users\madhu\desktop\madhu\c++ finalised packages\sakthi\shoppingcart.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"shoppingcart.h"
+
+1595672048 source:c:\users\madhu\desktop\madhu\c++ finalised packages\sakthi\shoppingmall.cpp
+	<iostream>
+	<fstream>
+	<stdlib.h>
+	<cstring>
+	"shoppingmall.h"
+

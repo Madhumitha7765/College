@@ -1,0 +1,191 @@
+
+
+
+1.
+
+i)
+>> syms x
+>> y=(x^2-5)*(x^3 - 2*x +3);
+>> diff(y)
+ 
+ans =
+ 
+(x^2 - 5)*(3*x^2 - 2) + 2*x*(x^3 - 2*x + 3)
+
+
+ii)
+>> syms x
+>> y=sin(x)*cos(x);
+>> diff(y)
+ 
+ans =
+ 
+cos(x)^2 - sin(x)^2
+
+
+iii)
+>> syms x
+>> y=abs(x);
+>> diff(y)
+ 
+ans =
+ 
+sign(x)
+
+
+iv)
+>> syms x
+>> y=x*abs(x);
+>> diff(y)
+ 
+ans =
+ 
+abs(x) + x*sign(x)
+
+
+v)
+>> y=(sqrt(x)+2*x)*(4*x^2-1) 
+>> diff(y)
+ 
+ans =
+ 
+(4*x^2 - 1)*(1/(2*x^(1/2)) + 2) + 8*x*(2*x + x^(1/2))
+
+
+vi)
+>> y=(x^2+1)/(5*x-3); 
+>> diff(y)
+ 
+ans =
+ 
+(2*x)/(5*x - 3) - (5*(x^2 + 1))/(5*x - 3)^2
+ 
+
+__________________________________________________________
+
+2)
+>> syms x y
+>> z=cos(2*x)+(x^2*exp(5*y))+3*y^2
+ 
+z =
+ 
+cos(2*x) + x^2*exp(5*y) + 3*y^2
+ 
+
+i)>> diff(z,x)
+ 
+ans =
+ 
+2*x*exp(5*y) - 2*sin(2*x)
+ 
+
+ii)>> diff(z,y)
+ 
+ans =
+ 
+
+5*exp(5*y)*x^2 + 6*y
+ 
+iii)>> diff(z,x,2)
+ 
+ans =
+ 
+2*exp(5*y) - 4*cos(2*x)
+
+
+iv)>> diff(z,y,2)
+ 
+ans =
+ 
+25*exp(5*y)*x^2 + 6
+ 
+
+
+v)>> diff(diff(z,y),x)
+ 
+ans =
+ 
+10*x*exp(5*y)
+ 
+
+vi)>> diff(diff(z,x),y)
+ 
+ans =
+ 
+10*x*exp(5*y)
+ 
+
+vii)>> diff(z,y,4)
+ 
+ans =
+ 
+625*x^2*exp(5*y)
+ 
+
+viii)>> diff(diff(diff(z,x),y),x)
+ 
+ans =
+ 
+10*exp(5*y)
+
+__________________________________________________________
+3)
+
+i)
+>> y=(x^2-5)*(x^3 - 2*x +3);
+>> vpa(subs(diff(y),x,2))
+ 
+ans =
+ 
+18.0
+
+
+ii)
+>> y=sin(x)*cos(x);
+>> vpa(subs(diff(y),x,2))
+ 
+ans =
+ 
+-0.65364362086361191463916818309775
+
+
+iii)
+>> y=abs(x);
+>> vpa(subs(diff(y),x,2))
+ 
+ans =
+ 
+1.0
+
+
+iv)
+>> y=x*abs(x);
+>> vpa(subs(diff(y),x,2))
+ 
+ans =
+ 
+4.0
+ 
+
+v)
+>> y=(sqrt(x)+2*x)*(4*x^2-1);
+>> vpa(subs(diff(y),x,2))
+ 
+ans =
+ 
+121.93071785686862721383335230314
+
+
+vi)
+>> y=(x^2+1)/(5*x-3);  
+>> vpa(subs(diff(y),x,2))
+ 
+ans =
+ 
+0.061224489795918367346938775510204
+
+
+__________________________________________________________
+
+4)
+
