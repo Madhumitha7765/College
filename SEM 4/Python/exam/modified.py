@@ -11,20 +11,38 @@ for i in range(1,c+1):
                continue
         else:
             break
-    """while True:
+    while True:
         gender = str(input('Enter patient gender :'))
         if str(gender.lower())=="female" or str(gender.lower())=="male":
                break
         else:
             print("Enter valid gender")
-            continue"""
-    gender=str(input("Enter gender : "))
-    date_of_birth=str(input("Enter DOB [dd/mm/yyyy] : "))
+            continue
+    while True:
+        date_of_birth = str(input("Enter DOB [dd/mm/yyyy] : "))
+        a=str(date_of_birth).split("/")
+        if int(a[0])<31 and int(a[0])>0 : s=1
+        if int(a[1])<12 and int(a[1])>0: s=2
+        if len(a[2])==4 : s=3
+        if s==3:
+            break
+        else:
+            print("Enter valid DOB")
+            continue
     address=str(input("Enter address : "))
-    weight=int(input("Enter weight : "))
-    symptoms=input("enter symptoms separated by comma : ")
+
+    while True:
+        weight = input("Enter weight : ")
+        if all(x.isdigit() for x in weight):
+            break
+        else:
+            print("Enter valid weight")
+            continue
+
+    symptoms=input("Enter symptoms separated by comma : ")
     a = tuple(str(x) for x in symptoms.split(","))
     print(a)
+
     n=int(input("Enter the number of tests taken so far : "))
     for i in range(1,n+1):
         test_name=input("Enter the test name : ")
