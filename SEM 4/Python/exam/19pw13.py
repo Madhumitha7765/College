@@ -43,14 +43,14 @@ for i in range(1,c+1):
                      test = 1
              if x == y == "HI":
                  if int(dict[x]) > int(Dengue_normal_ranges[y]):
-                     count = 1
+                     count = 2
                      test = 1
              if x == y == "Platelet count":
                  if int(dict[x]) < int(Dengue_normal_ranges[y]):
-                     count = 1
+                     count = 3
                      test = 1
 
-         if(count==1):
+         if(count==3):
              print("Tested positive for dengue")
              break
          elif count ==0 :
