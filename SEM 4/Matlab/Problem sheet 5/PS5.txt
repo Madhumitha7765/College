@@ -391,3 +391,18 @@ cond2=dy(0)==2
 cond=[cond1 cond2]
 ysol(x)=dsolve(ode,cond)
 
+--------------
+package ideas :
+--------------
+network flow problem
+process scheduling
+knapsack
+hedge
+portfolio optimisation
+finance sectors
+travelling salesman
+***bin packing/shipping problem
+amazon-delivering thru optimisation(minimising delivery chrge)
+
+or : r/python ,application based on lpp or optimisation problem
+matlab :clustering,classfication algorithms,eigen vectors/values

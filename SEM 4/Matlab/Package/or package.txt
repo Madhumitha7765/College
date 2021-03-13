@@ -1,0 +1,21 @@
+LIKED :
+
+image fusion using wavelet transform
+
+
+PENDING :
+
+speech recognition (github)
+colour sensing robot
+Hand Gesture Recognition
+
+optimisation
+text to speech
+
+
+
+REJECTED :
+
+audio compression using wavelet transform
+detection and counting of blood cells using image segmentation
+Artificial Neural Network Simulation
