@@ -12,6 +12,11 @@ hostname
 # Find out the users who are currently logged in and find the particular user too.
 who
 
+# (3)
+# Find out the total users in system and print how many of them
+# are currently logged in
+who -q
+
 # (4)
 # Display the calendar for
 # Jan 2000
@@ -432,8 +437,11 @@ journalctl # for Arch based distros
 # Display Swapping Statistics.
 free
 
-# (99,100)
+# (99)
 # Check File Access Statistics
+last
+
+# (100)
 # Check Buffer Activity statistics.
 free
 
