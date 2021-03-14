@@ -1,4 +1,4 @@
-# QUESTION -1 : Manipulate directory structures
+# QUESTION - 1 : Manipulate directory structures
 
 # (a) Display the absolute path of your home directory
 echo ~
