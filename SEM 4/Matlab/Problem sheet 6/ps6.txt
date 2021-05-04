@@ -1,0 +1,462 @@
+
+
+
+
+1.
+
+>> syms t;
+(i)
+>> y=(3*t^2)-(4*t)+5;
+>> laplace(y)
+ 
+ans =
+ 
+(4*((5*s)/4 - 1))/s^2 + 6/s^3
+
+
+(ii)
+>> y=(cos(t)^2)+(2*exp(-3*t))-7;
+>> laplace(y)
+ 
+ans =
+ 
+2/(s + 3) - 7/s + (s^2 + 2)/(s*(s^2 + 4))
+
+
+(iii)
+>> y=exp(3*t)*cosh(2*t);
+>> laplace(y)
+ 
+ans =
+ 
+(s - 3)/((s - 3)^2 - 4)
+
+
+(iv)
+>> y=sinh(t)*cos(3*t);
+>> laplace(y)
+ 
+ans =
+ 
+(s - 1)/(2*((s - 1)^2 + 9)) - (s + 1)/(2*((s + 1)^2 + 9))
+
+
+(v)
+>> y=(t+1)^2*exp(3*t);
+>> laplace(y)
+ 
+ans =
+ 
+2/(s - 3)^3 + (2*(s/2 - 1/2))/(s - 3)^2
+
+
+
+2.
+
+>> syms s;
+
+(i)
+
+>> y = (-s-10)/(s^2-s-2);
+>> ilaplace(y)
+ 
+ans =
+ 
+3*exp(-t) - 4*exp(2*t)
+
+
+(ii)
+
+>> y = (s-2)/(s^2-16);
+>> ilaplace(y)
+ 
+ans =
+ 
+(3*exp(-4*t))/4 + exp(4*t)/4
+
+
+(iii)
+
+>> y = 3/(s^2+6*s+18);
+>> ilaplace(y)
+ 
+ans =
+ 
+sin(3*t)*exp(-3*t)
+
+(iv)
+
+>> y = (s^4+6*s-18)/(s^5-3*s^4);
+>> ilaplace(y)
+ 
+ans =
+ 
+exp(3*t) + t^3
+
+(v)
+
+>> y = 4/(s^2-2*s-3);
+>> ilaplace(y)
+ 
+ans =
+ 
+exp(3*t) - exp(-t)
+
+
+
+3.
+
+(i)
+syms t
+f1=t*cos(2*t)
+subplot(1,2,1);
+ezplot(f1)
+f2=laplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+(ii)
+syms t
+f1=(t*sin(3*t)-2)
+subplot(1,2,1);
+ezplot(f1)
+f2=laplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+(iii)
+syms t
+f1=(sin(2*t)-(2*t*cos(2*t)))
+subplot(1,2,1);
+ezplot(f1)
+f2=laplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+(iv)
+syms t
+f1=(sin(3*t)+(3*t*cos(3*t)))
+subplot(1,2,1);
+ezplot(f1)
+f2=laplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+(v)
+syms t
+f1=(t*(exp(-2*t))*cos(3*t))
+subplot(1,2,1);
+ezplot(f1)
+f2=laplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+4.
+
+(i)
+
+syms s
+f1=((s^2)/((s-1)^2))
+subplot(1,2,1);
+ezplot(f1)
+f2=ilaplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+
+ 
+
+(ii)
+
+syms s
+f1=(s/((s^2)-9)^2)
+subplot(1,2,1);
+ezplot(f1)
+f2=ilaplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+(iii)
+syms s
+f1=(((2*s)/(((s^2)-(s)-2)^2)))
+subplot(1,2,1);
+ezplot(f1)
+f2=ilaplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+
+(iv)
+syms s
+f1=(s/(((s^2)+9)^2))
+subplot(1,2,1);
+ezplot(f1)
+f2=ilaplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+
+ 
+
+
+
+(v)
+syms s
+f1=((s^2)/(((s^2)+16)^2))
+subplot(1,2,1);
+ezplot(f1)
+f2=ilaplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+(vi)
+syms s
+f1=(4/(((s^2)+25)^2))
+subplot(1,2,1);
+ezplot(f1)
+f2=ilaplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+
+5.
+
+
+
+
+
+1.
+
+>> syms t;
+(i)
+>> y=(3*t^2)-(4*t)+5;
+>> laplace(y)
+ 
+ans =
+ 
+(4*((5*s)/4 - 1))/s^2 + 6/s^3
+
+
+(ii)
+>> y=(cos(t)^2)+(2*exp(-3*t))-7;
+>> laplace(y)
+ 
+ans =
+ 
+2/(s + 3) - 7/s + (s^2 + 2)/(s*(s^2 + 4))
+
+
+(iii)
+>> y=exp(3*t)*cosh(2*t);
+>> laplace(y)
+ 
+ans =
+ 
+(s - 3)/((s - 3)^2 - 4)
+
+
+(iv)
+>> y=sinh(t)*cos(3*t);
+>> laplace(y)
+ 
+ans =
+ 
+(s - 1)/(2*((s - 1)^2 + 9)) - (s + 1)/(2*((s + 1)^2 + 9))
+
+
+(v)
+>> y=(t+1)^2*exp(3*t);
+>> laplace(y)
+ 
+ans =
+ 
+2/(s - 3)^3 + (2*(s/2 - 1/2))/(s - 3)^2
+
+
+
+2.
+
+>> syms s;
+
+(i)
+
+>> y = (-s-10)/(s^2-s-2);
+>> ilaplace(y)
+ 
+ans =
+ 
+3*exp(-t) - 4*exp(2*t)
+
+
+(ii)
+
+>> y = (s-2)/(s^2-16);
+>> ilaplace(y)
+ 
+ans =
+ 
+(3*exp(-4*t))/4 + exp(4*t)/4
+
+
+(iii)
+
+>> y = 3/(s^2+6*s+18);
+>> ilaplace(y)
+ 
+ans =
+ 
+sin(3*t)*exp(-3*t)
+
+(iv)
+
+>> y = (s^4+6*s-18)/(s^5-3*s^4);
+>> ilaplace(y)
+ 
+ans =
+ 
+exp(3*t) + t^3
+
+(v)
+
+>> y = 4/(s^2-2*s-3);
+>> ilaplace(y)
+ 
+ans =
+ 
+exp(3*t) - exp(-t)
+
+
+
+3.
+
+(i)
+syms t
+f1=t*cos(2*t)
+subplot(1,2,1);
+ezplot(f1)
+f2=laplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+(ii)
+syms t
+f1=(t*sin(3*t)-2)
+subplot(1,2,1);
+ezplot(f1)
+f2=laplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+(iii)
+syms t
+f1=(sin(2*t)-(2*t*cos(2*t)))
+subplot(1,2,1);
+ezplot(f1)
+f2=laplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+(iv)
+syms t
+f1=(sin(3*t)+(3*t*cos(3*t)))
+subplot(1,2,1);
+ezplot(f1)
+f2=laplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+(v)
+syms t
+f1=(t*(exp(-2*t))*cos(3*t))
+subplot(1,2,1);
+ezplot(f1)
+f2=laplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+4.
+
+(i)
+
+syms s
+f1=((s^2)/((s-1)^2))
+subplot(1,2,1);
+ezplot(f1)
+f2=ilaplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+
+ 
+
+(ii)
+
+syms s
+f1=(s/((s^2)-9)^2)
+subplot(1,2,1);
+ezplot(f1)
+f2=ilaplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+(iii)
+syms s
+f1=(((2*s)/(((s^2)-(s)-2)^2)))
+subplot(1,2,1);
+ezplot(f1)
+f2=ilaplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+
+(iv)
+syms s
+f1=(s/(((s^2)+9)^2))
+subplot(1,2,1);
+ezplot(f1)
+f2=ilaplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+
+ 
+
+
+
+(v)
+syms s
+f1=((s^2)/(((s^2)+16)^2))
+subplot(1,2,1);
+ezplot(f1)
+f2=ilaplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+(vi)
+syms s
+f1=(4/(((s^2)+25)^2))
+subplot(1,2,1);
+ezplot(f1)
+f2=ilaplace(f1)
+subplot(1,2,2);
+ezplot(f2)
+ 
+
+
+5.
+
+
+

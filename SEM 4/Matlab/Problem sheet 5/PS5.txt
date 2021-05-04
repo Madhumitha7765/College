@@ -68,11 +68,11 @@ __________________________________________________________
 
 2)
 >> syms x y
->> z=cos(2*x)+(x^2*exp(5*y))+3*y^2
+>> z=cos(2*x)-(x^2*exp(5*y))+3*y^2
  
 z =
  
-cos(2*x) + x^2*exp(5*y) + 3*y^2
+cos(2*x) - x^2*exp(5*y) + 3*y^2
  
 
 i)>> diff(z,x)
@@ -337,7 +337,7 @@ ysol(x)=dsolve(ode,cond)
 iii)
 
 syms y(x)
-ode=x*diff(y)+2*y==(x^5)*sin(2*x)-(x^3)+4*(x^4)
+ode=x*diff(y)-2*y==(x^5)*sin(2*x)-(x^3)+4*(x^4)
 cond=y(pi)==3/2*(pi^4)
 ysol(x)=dsolve(ode,cond)
 
@@ -389,6 +389,19 @@ dy(x)=diff(y)
 cond1=y(0)==1
 cond2=dy(0)==2
 cond=[cond1 cond2]
+ysol(x)=dsolve(ode,cond)
+
+
+ix)
+
+syms y(x)
+ode=diff(y,x,3)==y-(x*diff(y,x))+(4*diff(y,x,2))
+dy1(x)=diff(y)
+dy2(x)=diff(y,x,2)
+cond1=y(2)==1
+cond2=dy1(2)==2
+cond3=dy2(2)==3
+cond=[cond1 cond2 cond3]
 ysol(x)=dsolve(ode,cond)
 
 --------------
